@@ -1,0 +1,19 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+# $Id$
+
+PortSystem 1.0
+PortGroup perl5 1.0
+
+perl5.setup             Color-Object 0.1_02
+maintainers             herbiet.net:guillaume-jean
+description             A OO-Color Module
+long_description \
+    A module for manipulation Colors within RGB, HSV and HSL color-spaces for \
+    usage within PDF-Documents especially with the Text::PDF::API modules.
+
+platforms               darwin
+
+checksums   md5     ea309a310af4dfea946c3e2e707f9a40 \
+            sha1    35bdb0070c4786ed18638da86a28164f4e0b6d9c \
+            rmd160  9a90adddf1a679c89e7f9a460f107708ef0dcea5
+

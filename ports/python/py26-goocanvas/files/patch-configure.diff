@@ -1,0 +1,21 @@
+--- configure.orig	2010-03-17 14:26:46.000000000 +0100
++++ configure	2010-03-17 14:34:17.000000000 +0100
+@@ -13128,7 +13128,7 @@
+         python_path=`dirname $PYTHON | sed "s,/bin.*$,,"`
+         for i in "$python_path/lib/python$PYTHON_VERSION/config/" "$python_path/lib/python$PYTHON_VERSION/" "$python_path/lib/python/config/" "$python_path/lib/python/" "$python_path/" ; do
+ 		if test -e "$i"; then
+-	                python_path=`find $i -type f -name libpython$PYTHON_VERSION.* -print | sed "1q"`
++	                python_path=`find $i -name libpython$PYTHON_VERSION.* -print | sed "1q"`
+         	        if test -n "$python_path" ; then
+ 				python_lib="python$PYTHON_VERSION"
+                 	        break
+@@ -14892,7 +14892,8 @@
+ if test -n "$CONFIG_FILES"; then
+ 
+ 
+-ac_cr=''
++ac_cr='
++'
+ ac_cs_awk_cr=`$AWK 'BEGIN { print "a\rb" }' </dev/null 2>/dev/null`
+ if test "$ac_cs_awk_cr" = "a${ac_cr}b"; then
+   ac_cs_awk_cr='\\r'

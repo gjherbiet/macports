@@ -1,0 +1,22 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+# $Id$
+
+PortSystem 1.0
+PortGroup perl5 1.0
+
+perl5.setup             Frontier-RPC 0.07b4
+maintainers             herbiet.net:guillaume-jean
+description             Issue Frontier XML RPC requests to a server.
+long_description \
+    Frontier::Client is an XML-RPC client over HTTP. Frontier::Client \
+    instances are used to make calls to XML-RPC servers and as shortcuts for \
+    creating XML-RPC special data types.
+
+platforms               darwin
+
+checksums   md5     c04582da604f11bdbe60606738f92457 \
+            sha1    f9446fb355bb20b587bc6bd6371882feb48b7713 \
+            rmd160  ff7b2db6da3e1d5eaaa291e34fc9e1018d7dbc56
+
+depends_lib-append  port:p5-xml-parser \
+                    port:p5-lwp-useragent-determined

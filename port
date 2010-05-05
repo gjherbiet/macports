@@ -1,0 +1,56 @@
+#!/bin/bash
+
+LOG_FILE=$HOME"/.macports.log"
+LOG_ACTION=0
+ROOT_REQUIRED=0
+SELFUPGRADE=0
+
+for option in $@;
+do
+	case "$option" in
+		*install|upgrade|*activate)
+		LOG_ACTION=1
+		;;
+		*)
+	esac
+	
+	case "$option" in
+		outdated)
+		LOG_ACTION=0
+		;;
+		*)
+	esac
+	
+	case "$option" in
+		*install|upgrade|*activate|fetch|checksum|extract|patch|configure|build|test|destroot|selfupdate)
+		ROOT_REQUIRED=1
+		;;
+		*)
+	esac
+	
+	case "$option" in selfupgrade)
+		ROOT_REQUIRED=1
+		SELFUPGRADE=1
+		;;
+		*)
+	esac
+done
+
+# Test if root privilege is there whenever required
+if [[ $ROOT_REQUIRED -gt 0 && $EUID -ne 0 ]]; then
+	echo "This MacPort action required to be run as root." 2>&1
+	echo "Please use \"sudo port $@\"." 2>&1
+	exit 1
+fi
+
+# Log the action if required
+if [[ $LOG_ACTION -gt 0 ]]; then
+	echo "`date` $@" >> $LOG_FILE
+fi
+
+# Finally execute the port command with verbose level
+if [[ $SELFUPGRADE -gt 0 ]]; then
+	/opt/local/bin/port -v -Ru upgrade outdated
+else
+	/opt/local/bin/port -v $@
+fi

@@ -1,0 +1,25 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+# $Id$
+
+PortSystem 1.0
+PortGroup perl5 1.0
+
+perl5.setup             Ubigraph 0.05
+maintainers             herbiet.net:guillaume-jean
+description             Perl client of Ubigraph software
+long_description \
+    Ubigraph is a Perl client interface for the UbiGraph software \
+    (http://ubietylab.net/ubigraph/) with object-oriented abstraction over \
+    the XML-RPC calls. UbiGraph is a client-server software for 3D \
+    visualization and layout of graph-theoretical network diagrams. \
+    This module hides the XML-RPC calls and allows visualization through \
+    object-oriented access to Vertex and Edge objects, similar to Python \
+    and Ruby APIs.
+
+platforms               darwin
+
+checksums   md5     55426b8e82aa399712264edaf9c31d9f \
+            sha1    dc8ed6c41d52832add8e470a2fbbf99ed2d182d7 \
+            rmd160  7d26e5b115b2cf92c55d0cf7ed396fd0ed0a2ed7
+
+depends_lib-append  port:p5-frontier-rpc
