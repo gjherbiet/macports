@@ -1,0 +1,62 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+# $Id$
+
+PortSystem 1.0
+
+name                ns-3-devel
+conflicts           ns-3
+version             1
+categories          science devel
+maintainers         herbiet.net:guillaume-jean
+
+description         The ns-3 network simulator
+long_description \
+    ns-3 is a discrete-event network simulator for Internet systems, targeted \
+    primarily for research and educational use. ns-3 is free software, \
+    licensed under the GNU GPLv2 license, and is publicly available for \
+    research, development, and use.
+homepage            http://www.nsnam.org/
+platforms           darwin
+
+fetch.type          hg
+svn.url             http://code.nsnam.org/ns-3-allinone/
+worksrcdir          ns-3-allinone
+
+depends_lib-append \
+    port:mercurial
+
+configure.cmd   {./download.py && cd ${worksrcpath}/ns-3-dev && ./waf configure}
+build.cmd       {cd ${worksrcpath}/ns-3-dev && ./waf}
+
+variant gsl description {GNU Scientific Library (GSL) bindings} {
+    depends_lib-append \
+        port:gsl
+}
+
+variant mpi description {Enable MPI Support} {
+    configure.args-append \
+           --enable-mpi
+}
+
+variant python description {Enable Python bindings and API scanning support} {
+    depends_lib-append \
+        port:bzr \
+        port:py26-pygccxml
+        
+    configure.python    ${prefix}/bin/python2.6
+}
+
+variant static description {Enable static build} {
+    configure.args-append \
+        --enable-static
+}
+
+variant sudo description {Enable sudo to set suid bit} {
+    configure.args-append \
+        --enable-sudo
+}
+
+variant valgrind description {Use Valgrind for debugging} {
+    depends_lib-append \
+        port:valgrind-devel
+}
