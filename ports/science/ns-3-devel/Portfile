@@ -20,13 +20,13 @@ platforms           darwin
 
 fetch.type          hg
 svn.url             http://code.nsnam.org/ns-3-allinone/
-worksrcdir          ns-3-allinone
+worksrcdir          ns-3-allinone/ns-3-dev
 
 depends_lib-append \
     port:mercurial
 
-configure.cmd   {./download.py && cd ${worksrcpath}/ns-3-dev && ./waf configure}
-build.cmd       {cd ${worksrcpath}/ns-3-dev && ./waf}
+configure.cmd   {../download.py && ./waf configure}
+build.cmd       {./waf}
 
 variant gsl description {GNU Scientific Library (GSL) bindings} {
     depends_lib-append \
